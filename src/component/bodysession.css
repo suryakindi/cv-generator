@@ -1,0 +1,69 @@
+.body-session {
+    background-size: 130%;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    position: relative; /* Untuk overlay */
+}
+
+/* Overlay hitam semi transparan untuk meningkatkan kontras teks */
+.body-session::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Overlay hitam semi transparan */
+    z-index: 1; /* Membuat overlay berada di atas gambar latar belakang */
+}
+
+.cv-generator {
+    position: relative;
+    z-index: 2; /* Membuat teks berada di atas overlay */
+    text-align: center;
+    padding-top: 20%;
+}
+
+.cv-generator-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600; /* Font tebal untuk judul */
+    font-size: 36px; /* Ukuran lebih besar untuk judul */
+    color: white; /* Ubah teks menjadi putih */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Shadow untuk teks */
+    margin-bottom: 20px;
+}
+
+.cv-generator-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400; /* Font normal untuk teks deskripsi */
+    font-size: 20px; /* Ukuran font lebih kecil */
+    color: white; /* Ubah teks menjadi putih */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Shadow untuk teks */
+}
+
+
+/* Gaya untuk tombol "Try It" */
+.try-it-button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: white;
+    background-color: #007BFF; /* Warna latar belakang biru */
+    border: none;
+    border-radius: 5px; /* Sudut melengkung */
+    padding: 10px 20px; /* Ruang dalam tombol */
+    cursor: pointer; /* Ubah kursor saat hover */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Shadow untuk teks tombol */
+    transition: background-color 0.3s ease; /* Efek transisi */
+    z-index: 2; /* Pastikan tombol berada di atas overlay */
+}
+
+.try-it-button:hover {
+    background-color: #0056b3; /* Warna latar belakang biru gelap saat hover */
+}
+
+.try-it-button:active {
+    background-color: #004085; /* Warna latar belakang biru lebih gelap saat diklik */
+}
+
