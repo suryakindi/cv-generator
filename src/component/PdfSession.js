@@ -19,10 +19,7 @@ const PdfSession = () => {
   const course = JSON.parse(localStorage.getItem('datacourse'));
   const skill = JSON.parse(localStorage.getItem('dataskill'));
 
-  useEffect(() => {
-   
-    window.print();
-  }, []);
+ 
 
   return (
     <>
