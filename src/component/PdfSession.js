@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
@@ -19,40 +19,14 @@ const PdfSession = () => {
   const course = JSON.parse(localStorage.getItem('datacourse'));
   const skill = JSON.parse(localStorage.getItem('dataskill'));
 
-  const handleDownloadPDF = () => {
-    const input = cvRef.current;
-    html2canvas(input).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("p", "mm", "a4");
-      const imgWidth = 210;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      
-      let heightLeft = imgHeight;
-      let position = 0;
-      const pageHeight = pdf.internal.pageSize.height;
-      const imgHeightInMm = imgHeight * 0.264583; // convert px to mm
-
-      if (imgHeightInMm > pageHeight) {
-        while (heightLeft > 0) {
-          pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-          heightLeft -= pageHeight;
-          position -= pageHeight;
-          if (heightLeft > 0) {
-            pdf.addPage();
-          }
-        }
-      } else {
-        pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-      }
-      
-      pdf.save("CV.pdf");
-    });
-  };
-  window.print();
+  useEffect(() => {
+   
+    window.print();
+  }, []);
 
   return (
     <>
-     
+      
       <div>
         <div className="cv-container" ref={cvRef}>
           <header className="cv-header">
