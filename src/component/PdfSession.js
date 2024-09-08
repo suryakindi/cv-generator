@@ -48,12 +48,11 @@ const PdfSession = () => {
       pdf.save("CV.pdf");
     });
   };
+  window.print();
 
   return (
     <>
-      <button className="download-btn" onClick={handleDownloadPDF}>
-        Download as PDF
-      </button>
+     
       <div>
         <div className="cv-container" ref={cvRef}>
           <header className="cv-header">
