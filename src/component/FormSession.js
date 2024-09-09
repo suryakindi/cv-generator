@@ -337,7 +337,7 @@ export default function FormSession() {
                             name="course"
                             value={formCourse.course}
                             onChange={handleCourse}
-                            placeholder="Masukkan nama perusahaan"
+                            placeholder="Masukkan nama intansi pendidikan"
                         />
 
                         <label htmlFor="job-period">Periode:</label>
