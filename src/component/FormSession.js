@@ -172,6 +172,7 @@ export default function FormSession() {
         >
             <div className="form-container">
                 <form className="data-form">
+                    <div><h3>Biodata Dirimu</h3></div>
                     <label htmlFor="name">Nama:</label>
                     <input
                         type="text"
@@ -306,7 +307,7 @@ export default function FormSession() {
                         />
 
                         <br />
-                        <button type="button" onClick={handleClickAddJob}>Add +</button>
+                        <button type="button"  className="add-button" onClick={handleClickAddJob}>Add +</button>
 
                         <div>
                             {dataJob.length > 0 && (
@@ -380,7 +381,7 @@ export default function FormSession() {
                        
 
                         <br />
-                        <button type="button" onClick={handleClickAddCourse}>Add +</button>
+                        <button type="button" className="add-button" onClick={handleClickAddCourse}>Add +</button>
 
                         <div>
                             {dataCourse.length > 0 && (
@@ -418,7 +419,7 @@ export default function FormSession() {
                        
 
                         <br />
-                        <button type="button" onClick={handleskillAdd}>Add +</button>
+                        <button type="button" className="add-button" onClick={handleskillAdd}>Add +</button>
 
                         <div>
                             {dataSkill.length > 0 && (
