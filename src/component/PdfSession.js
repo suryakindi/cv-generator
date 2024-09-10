@@ -40,6 +40,7 @@ const PdfSession = () => {
                 <h3>{jobdetail.jobDesk}</h3>
                 <p>{jobdetail.company} ({jobdetail.startMonth}/{jobdetail.startYear} - {jobdetail.endMonth}/{jobdetail.endYear})</p>
                 <p>Description: <span dangerouslySetInnerHTML={{ __html: jobdetail.description }} /></p>
+             
               </div>
             ))}
           </section>

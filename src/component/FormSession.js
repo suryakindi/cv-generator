@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 
 export default function FormSession() {
     const navigate = useNavigate(); 
+    const [ updateValue, SetUpdateValue] = useState(false);
+    const [ valuePosition, SetValuePosition] = useState('');
+    const [ indexValue, SetIndexValue] = useState();
     const [formData, setFormData] = useState({
         name: '',
         address: '',
@@ -154,6 +157,153 @@ export default function FormSession() {
         });
         
     };
+
+    const handleEditData = (index, conditional) => (e) => {
+        e.preventDefault();
+        
+        if(conditional === 'editJob'){
+            SetValuePosition('editJob');
+            SetUpdateValue(true);
+            SetIndexValue(index);
+            dataJob.forEach((datajobs, key)=>{
+                if(index === key){
+                   
+                    
+                  setFormJob({
+                    jobCompany: datajobs.company,
+                    startMonth : datajobs.startMonth,
+                    endMonth : datajobs.endMonth,
+                    startYear : datajobs.startYear,
+                    endYear : datajobs.endYear,
+                    jobDesk : datajobs.jobDesk,
+                    jobDescription : datajobs.description
+                  });
+                }
+                
+            })
+        }
+
+        if(conditional === 'editCourse'){
+            SetValuePosition('editCourse');
+            SetIndexValue(index);
+            SetUpdateValue(true);
+            dataCourse.forEach((datacoruses, key)=>{
+                if(index === key){
+                    setCourse({
+                        course : datacoruses.course,
+                        startMonth : datacoruses.startMonth,
+                        endMonth : datacoruses.endMonth,
+                        startYear : datacoruses.startYear,
+                        endYear : datacoruses.endYear
+                    })
+                }
+            })
+        }
+
+        
+    };
+
+    
+    const updateData = (conditional)=>(e)=>{
+        e.preventDefault();
+        if(conditional === 'updateJob'){
+            if (indexValue !== null) {
+                const updatedDataJob = [...dataJob]; 
+                
+                updatedDataJob.forEach((job, index) => {
+                    if (index === indexValue) {
+                        updatedDataJob[index].company = formJob.jobCompany;
+                        updatedDataJob[index].startMonth = formJob.startMonth;
+                        updatedDataJob[index].startYear = formJob.startYear;
+                        updatedDataJob[index].endMonth = formJob.endMonth;
+                        updatedDataJob[index].endYear = formJob.endYear;
+                        updatedDataJob[index].endYear = formJob.endYear;
+                        updatedDataJob[index].description = formJob.jobDescription;
+                        updatedDataJob[index].jobDesk = formJob.jobDesk;
+    
+                       
+                    }
+                    
+                });
+             
+    
+                setDataJob(updatedDataJob);
+                SetUpdateValue(false);
+                setFormJob({
+                    jobCompany: '',
+                    startMonth: '',
+                    startYear: '',
+                    endMonth: '',
+                    endYear: '',
+                    jobDescription: '',
+                    jobDesk : '',
+                });
+                
+            }
+        }
+        if(conditional === 'updateCourse'){
+            if (indexValue !== null) {
+                const updateDataCourse = [...dataCourse]; 
+                
+                
+                updateDataCourse.forEach((course, index) => {
+                    if (index === indexValue) {
+                        updateDataCourse[index].course = formCourse.course;
+                        updateDataCourse[index].startMonth = formCourse.startMonth;
+                        updateDataCourse[index].startYear = formCourse.startYear;
+                        updateDataCourse[index].endMonth = formCourse.endMonth;
+                        updateDataCourse[index].endYear = formCourse.endYear;
+                        updateDataCourse[index].endYear = formCourse.endYear;
+                       
+    
+                       
+                    }
+                    
+                });
+                
+    
+                setDataCourse(updateDataCourse);
+                SetUpdateValue(false);
+                setCourse({
+                    course: '',
+                    startMonth: '',
+                    startYear: '',
+                    endMonth: '',
+                    endYear: '',
+                });
+                
+            }
+        }
+        
+    }
+
+    const handleDeleteData = (index, conditional)=>(e)=>{
+        e.preventDefault();
+        if(conditional === 'deleteJob'){
+            const deleteDataJob = dataJob.slice();
+            deleteDataJob.splice(index, 1);
+      
+            setDataJob(deleteDataJob);
+        }
+
+        if(conditional === 'deleteCourse'){
+            const deleteCourse = dataCourse.slice();
+            deleteCourse.splice(index, 1);
+      
+            setDataCourse(deleteCourse);
+        }
+
+        if(conditional === 'deleteSkill'){
+            const deleteSkill = dataSkill.slice();
+            deleteSkill.splice(index, 1);
+
+            setDataSkill(deleteSkill);
+        }
+       
+    }
+
+    
+
     const Generatebutton = (e) => {
         e.preventDefault();
         localStorage.setItem('profile', JSON.stringify(formData));
@@ -235,6 +385,7 @@ export default function FormSession() {
                             onChange={handleJobChange}
                             placeholder="Masukkan nama perusahaan"
                         />
+                       
 
                         <label htmlFor="job-company">Posisi Pekerjaan:</label>
                         <input
@@ -308,6 +459,14 @@ export default function FormSession() {
 
                         <br />
                         <button type="button"  className="add-button" onClick={handleClickAddJob}>Add +</button>
+                        &nbsp;
+                        {
+                            updateValue && valuePosition == 'editJob' &&(
+                                <>
+                                   <button type="button"  className="add-button" onClick={updateData('updateJob')}>Update</button>
+                                </>
+                            )
+                        }
 
                         <div>
                             {dataJob.length > 0 && (
@@ -317,8 +476,11 @@ export default function FormSession() {
                                         {dataJob.map((job, index) => (
                                             <li key={index}>
                                                 <small>Company: {job.company}</small> <br />
+                                                <small>JobDesk: {job.jobDesk}</small> <br />
                                                 <small>Period: {job.startMonth}/{job.startYear} - {job.endMonth}/{job.endYear}</small> <br />
                                                 <small>Description: <span dangerouslySetInnerHTML={{ __html: job.description }} /></small> 
+                                                <button  className="add-button" onClick={handleEditData(index, 'editJob')}>Edit</button>
+                                                <button   className="add-button" onClick={handleDeleteData(index, 'deleteJob')}>Hapus</button>
                                             </li>
                                         ))}
                                     </ul>
@@ -381,7 +543,15 @@ export default function FormSession() {
                        
 
                         <br />
-                        <button type="button" className="add-button" onClick={handleClickAddCourse}>Add +</button>
+                        <button type="button" className="add-button" onClick={handleClickAddCourse}>Add +</button> &nbsp;
+
+                        {
+                            updateValue && valuePosition == 'editCourse' &&(
+                                <>
+                                   <button type="button"  className="add-button" onClick={updateData('updateCourse')}>Update</button>
+                                </>
+                            )
+                        }
 
                         <div>
                             {dataCourse.length > 0 && (
@@ -392,7 +562,8 @@ export default function FormSession() {
                                             <li key={index}>
                                                 <small>Pendidikan: {course.course}</small> <br />
                                                 <small>Period: {course.startMonth}/{course.startYear} - {course.endMonth}/{course.endYear}</small> <br />
-                                               
+                                                <button  className="add-button" onClick={handleEditData(index, 'editCourse')}>Edit</button>
+                                                <button  className="add-button" onClick={handleDeleteData(index, 'deleteCourse')}>Hapus</button>
                                             </li>
                                         ))}
                                     </ul>
@@ -429,7 +600,7 @@ export default function FormSession() {
                                         {dataSkill.map((skill, index) => (
                                             <li key={index}>
                                                 <small>Keahlian: {skill.skill}</small> <br />
-                                                
+                                                <button  className="add-button" onClick={handleDeleteData(index, 'deleteSkill')}>Hapus</button>
                                             </li>
                                         ))}
                                     </ul>

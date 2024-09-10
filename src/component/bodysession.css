@@ -1,13 +1,16 @@
+/* Gaya umum untuk elemen body-session */
 .body-session {
-    background-size: 130%;
-    background-position: center;
-    height: 100vh;
-    width: 100%;
+    background-image: url('../image/background.png'); /* Ganti dengan path gambar Anda */
+    background-size: 130%; /* Gambar menutupi seluruh area elemen */
+    background-position: center; /* Posisi gambar di tengah elemen */
+    background-attachment: fixed; /* Menjaga gambar latar belakang tetap di tempat saat scrolling */
+    height: 100vh; /* Tinggi elemen 100% dari viewport height */
+    width: 100%; /* Lebar elemen 100% dari viewport width */
     position: relative; /* Untuk overlay */
-}
-
-/* Overlay hitam semi transparan untuk meningkatkan kontras teks */
-.body-session::before {
+  }
+  
+  /* Overlay hitam semi transparan untuk meningkatkan kontras teks */
+  .body-session::before {
     content: '';
     position: absolute;
     top: 0;
@@ -16,54 +19,91 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); /* Overlay hitam semi transparan */
     z-index: 1; /* Membuat overlay berada di atas gambar latar belakang */
-}
-
-.cv-generator {
+  }
+  
+  /* Gaya untuk konten cv-generator */
+  .cv-generator {
     position: relative;
     z-index: 2; /* Membuat teks berada di atas overlay */
     text-align: center;
-    padding-top: 20%;
-}
-
-.cv-generator-title {
+    padding-top: 20%; /* Ruang di atas konten */
+  }
+  
+  /* Gaya untuk judul */
+  .cv-generator-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600; /* Font tebal untuk judul */
-    font-size: 36px; /* Ukuran lebih besar untuk judul */
-    color: white; /* Ubah teks menjadi putih */
+    font-size: 36px; /* Ukuran font untuk judul */
+    color: white; /* Warna teks putih */
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Shadow untuk teks */
-    margin-bottom: 20px;
-}
-
-.cv-generator-text {
+    margin-bottom: 20px; /* Jarak bawah judul */
+  }
+  
+  /* Gaya untuk teks deskripsi */
+  .cv-generator-text {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400; /* Font normal untuk teks deskripsi */
-    font-size: 20px; /* Ukuran font lebih kecil */
-    color: white; /* Ubah teks menjadi putih */
+    font-size: 20px; /* Ukuran font untuk teks deskripsi */
+    color: white; /* Warna teks putih */
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Shadow untuk teks */
-}
-
-
-/* Gaya untuk tombol "Try It" */
-.try-it-button {
+  }
+  
+  /* Gaya untuk tombol "Try It" */
+  .try-it-button {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    font-size: 18px;
-    color: white;
+    font-size: 18px; /* Ukuran font tombol */
+    color: white; /* Warna teks putih */
     background-color: #007BFF; /* Warna latar belakang biru */
-    border: none;
-    border-radius: 5px; /* Sudut melengkung */
+    border: none; /* Menghilangkan border */
+    border-radius: 5px; /* Sudut tombol melengkung */
     padding: 10px 20px; /* Ruang dalam tombol */
     cursor: pointer; /* Ubah kursor saat hover */
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Shadow untuk teks tombol */
     transition: background-color 0.3s ease; /* Efek transisi */
     z-index: 2; /* Pastikan tombol berada di atas overlay */
-}
-
-.try-it-button:hover {
+  }
+  
+  /* Gaya tombol saat hover */
+  .try-it-button:hover {
     background-color: #0056b3; /* Warna latar belakang biru gelap saat hover */
-}
-
-.try-it-button:active {
+  }
+  
+  /* Gaya tombol saat diklik */
+  .try-it-button:active {
     background-color: #004085; /* Warna latar belakang biru lebih gelap saat diklik */
-}
-
+  }
+  
+  /* Media queries untuk perangkat mobile */
+  @media (max-width: 768px) {
+    .cv-generator-title {
+      font-size: 28px; /* Ukuran font judul lebih kecil di perangkat mobile */
+    }
+  
+    .cv-generator-text {
+      font-size: 16px; /* Ukuran font teks deskripsi lebih kecil di perangkat mobile */
+      margin: 0 10px; /* Margin samping untuk ruang tambahan */
+    }
+  
+    .try-it-button {
+      font-size: 16px; /* Ukuran font tombol lebih kecil di perangkat mobile */
+      padding: 8px 16px; /* Ruang dalam tombol lebih kecil */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .cv-generator-title {
+      font-size: 24px; /* Ukuran font judul lebih kecil di perangkat dengan layar sangat kecil */
+    }
+  
+    .cv-generator-text {
+      font-size: 14px; /* Ukuran font teks deskripsi lebih kecil di perangkat dengan layar sangat kecil */
+      margin: 0 5px; /* Margin samping lebih kecil untuk ruang tambahan */
+    }
+  
+    .try-it-button {
+      font-size: 14px; /* Ukuran font tombol lebih kecil di perangkat dengan layar sangat kecil */
+      padding: 6px 12px; /* Ruang dalam tombol lebih kecil */
+    }
+  }
+  

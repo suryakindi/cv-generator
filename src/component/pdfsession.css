@@ -54,11 +54,12 @@
   }
   
   .skills-list li {
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     padding: 5px;
     margin-bottom: 5px;
     display: inline-block;
     border-radius: 4px;
+    border: none; /* Menambahkan properti border dengan nilai none */
   }
   
   .download-btn {
