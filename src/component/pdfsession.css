@@ -44,7 +44,9 @@
   .cv-item h3 {
     margin: 0;
     font-size: 18px;
+    color: black !important; /* Menambahkan !important */
   }
+  
   
   .skills-list {
     list-style: none;
